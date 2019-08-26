@@ -5,8 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 import time, os
 from dotenv import load_dotenv
-
-load_dotenv()
+import setting
 
 USER = os.environ["USER_NAME"]
 PASS = os.environ["PASSWORD"]
@@ -53,14 +52,11 @@ detDepoTable = browser.find_elements_by_css_selector("table.table:nth-child(2) >
 #detOtherTable = browser.find_element_by_css_selector("#portfolio_det_oth > table:nth-child(3)")
 #detPointTable = browser.find_element_by_css_selector("#portfolio_det_po > table:nth-child(3)")
 
+#portfolio_det_bd > table > tbody > tr:nth-child(1)
+SECTION_INFO = setting.SECTION_INFO
+
 csv_array = []
-BS_TAG = 'bs_detail'
-SECTION_INFO = {}
-SECTION_INFO[BS_TAG] = {}
-SECTION_INFO[BS_TAG]['name_tr_id'] = 1
-SECTION_INFO[BS_TAG]['value_tr_id'] = 2
-SECTION_INFO[BS_TAG]['belongs_tr_id'] = 3
-section_tag = 'bs_detail'
+section_tag = 'cash'
 for tr in detDepoTable:
     row_array = {}
     td_list = tr.find_elements_by_css_selector("td")
