@@ -1,10 +1,17 @@
 import struct
+import os
+
 
 def to_csv(name, maxdata):
     # ラベルファイルとイメージファイルを開く
     lbl_f = open("./mnist/"+name+"-labels-idx1-ubyte", mode="rb")
     img_f = open("./mnist/"+name+"-images-idx3-ubyte", mode="rb")
-    csv_f = open("./mnist/"+name+".csv", mode="w", encoding="utf-8")
+    csv_path = "./mnist/"+name+"."+str(maxdata)+".csv"
+    if os.path.exists(csv_path):
+        print("file exist:" + csv_path)
+        return
+
+    csv_f = open(csv_path, mode="w", encoding="utf-8")
     # ヘッダ情報を読む --- (※1)
     mag, lbl_count = struct.unpack(">II", lbl_f.read(8))
     mag, img_count = struct.unpack(">II", img_f.read(8))
@@ -30,5 +37,5 @@ def to_csv(name, maxdata):
     img_f.close()
 
 # 出力件数を指定 --- (※4)
-to_csv("train", 1000)
+to_csv("train", 9999)
 to_csv("t10k", 500)
