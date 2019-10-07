@@ -8,6 +8,9 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException
 
 from dotenv import load_dotenv
+import json
+
+import pandas as pd
 
 
 class mf:
@@ -66,7 +69,7 @@ class mf:
 
         # to get firefox's WebDriver
         options = FirefoxOptions()
-        # options.add_argument('-headless')
+        options.add_argument('-headless')
         browser = Firefox(options=options)
 
         # access to login page
@@ -146,8 +149,9 @@ class mf:
         url_visitor_log = "https://moneyforward.com/bs/portfolio"
         browser.get(url_visitor_log)
 
-        csv_dict = {}
+        csv_array = []
         for section_name, section_info in self.SECTION_INFO.items():
+            print("section:" + section_name)
             trs = browser.find_elements_by_css_selector(section_info['table_css_selector'] + " > tbody > tr")
             for tr in trs:
                 row_array = {}
@@ -163,3 +167,10 @@ class mf:
                     # print(td.text)
                     tr_id += 1
                 print(row_array)
+                csv_array.append(row_array)
+
+        # 変換したいJSONファイルを読み込む
+        df = pd.read_json(json.dumps(csv_array))
+
+        # CSVに変換して任意のファイル名で保存
+        df.to_csv("asset.csv")
