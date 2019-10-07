@@ -4,5 +4,5 @@
 /data/
 geckodriver\.log
 __pycache__/
-mf/asset.csv
 sample/scraping_and_machine_lerning/ch5/log_dir/
+mf/asset.csv
