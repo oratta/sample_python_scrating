@@ -161,9 +161,9 @@ class mf:
                     if tr_id == self.SECTION_INFO[section_name]['name_tr_id']:
                         row_array['name'] = td.text
                     elif tr_id == self.SECTION_INFO[section_name]['value_tr_id']:
-                        row_array['value'] = td.text
+                        row_array['value'] = td.text.replace(',','');
                     elif tr_id == self.SECTION_INFO[section_name]['belongs_tr_id']:
-                        row_array['belongs'] = td.text
+                        row_array['account'] = td.text
                     # print(td.text)
                     tr_id += 1
                 print(row_array)
@@ -173,4 +173,4 @@ class mf:
         df = pd.read_json(json.dumps(csv_array))
 
         # CSVに変換して任意のファイル名で保存
-        df.to_csv("asset.csv")
+        df.to_csv("asset.csv", index=False)
