@@ -35,8 +35,8 @@ class mf:
         },
         'recievable': {
             'name_tr_id': 1,
-            'value_tr_id': 5,
-            'belongs_tr_id': 9,
+            'value_tr_id': 2,
+            'belongs_tr_id': 3,
             'table_css_selector': '#portfolio_det_bd > table'
         },
         'other': {
