@@ -20,9 +20,13 @@ def sigmoid(x):
 def relu(x):
     return np.maximum(0,x)
 
-x = np.arange(-5.0, 5.0, 0.1)
-# y = step_function(x)
-y = sigmoid(x)
-plt.plot(x,y)
-plt.ylim(-0.1, 1.1)
-plt.show()
+def identify_function(x):
+    return x
+
+def __check():
+    x = np.arange(-5.0, 5.0, 0.1)
+    # y = step_function(x)
+    y = sigmoid(x)
+    plt.plot(x,y)
+    plt.ylim(-0.1, 1.1)
+    plt.show()
